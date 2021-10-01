@@ -31,7 +31,7 @@ int find_pivot(t_pile pile, unsigned int len, unsigned int start)
 	  count = 0;
 	  j = 0;
 	  while (j < len){
-	  	  if (pile.nbr[i] > pile.nbr[j]) {
+	  	  if (pile.nbr[start + i] > pile.nbr[start +j]) {
 				count++;
 		  }
 		  j++;
@@ -46,10 +46,10 @@ int find_pivot(t_pile pile, unsigned int len, unsigned int start)
 			  }
 	  }
 	  i++;
-	
+
   }
-	//printf("%d pivot = \n", pile.nbr[i]);
-  return ((pile.nbr)[i]);
+	//printf("%d pivot = \n", pile.nbr[start + i]);
+  return ((pile.nbr)[start + i]);
 }
 
 int	find_smaller(t_pile pile, int *min)

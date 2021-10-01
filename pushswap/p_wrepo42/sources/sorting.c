@@ -38,43 +38,51 @@ void	sort_algo(t_pile *pile_a, t_pile *pile_b)
 	len_displayed = 0;
 	size = pile_a->size;
 	// int tt = 0;
+
 	if (range_is_sorted(pile_a->nbr, pile_a->size))
 		return ;
+
 	if (pile_a->size > 25)
 	{
 		int count = 0;
+
 		while (!range_is_sorted(pile_a->nbr, pile_a->size)
 			&& size - ret > 2)
 		{
 			count++;
 			i = -1;
 			quicksort(pile_a, pile_b, len_displayed, ret);
-			print_piles(pile_a, pile_b);
+			//print_piles(pile_a, pile_b);
 
 			len_displayed = insertsort_basic(pile_b, pile_a, &pos, &max);
 			ret += len_displayed;
-			print_piles(pile_a, pile_b);
+			//print_piles(pile_a, pile_b);
 
 			sort_three(pile_b, 2);
 			repush(pile_a, pile_b);
-			print_piles(pile_a, pile_b);
+			//print_piles(pile_a, pile_b);
 
 			if (count >= 2) {
-				while (++i < pile_a->size - ret)
-					rev_rotate(pile_a, pile_a->identifier);
+				//while (++i < pile_a->size - ret)
+					//rev_rotate(pile_a, pile_a->identifier);
 			} else {
-				while (++i < len_displayed)
-					rotate(pile_a, pile_a->identifier);
+				//while (++i < len_displayed)
+				//	rotate(pile_a, pile_a->identifier);
 			}
-			print_piles(pile_a, pile_b);
+			//print_piles(pile_a, pile_b);
 		}
 		rev_rotate(pile_a, pile_a->identifier);
 		if (pile_a->nbr[0] > pile_a->nbr[1]) {
 			swap(pile_a, 1);
 		}
+		rev_rotate(pile_a, pile_a->identifier);
+		if (pile_a->nbr[0] > pile_a->nbr[1]) {
+			swap(pile_a, 1);
+		}
+		//print_piles(pile_a, pile_b);
 		//insertsort_basic(pile_a, pile_b, &pos, &min);
-		while (!range_is_sorted(pile_a->nbr, pile_a->size))
-			rev_rotate(pile_a, pile_a->identifier);
+		//while (!range_is_sorted(pile_a->nbr, pile_a->size))
+			//rev_rotate(pile_a, pile_a->identifier);
 		//print_piles(pile_a, pile_b);
 
 		// push(pile_a, pile_b, pile_b->identifier);
@@ -96,15 +104,46 @@ void quicksort(t_pile *pile_a, t_pile *pile_b, unsigned int len, unsigned int re
 {
 	int		pivot;
 	int		i;
+	int y2;
 	int y;
+	int u;
+	int count;
+	int pos;
+	int max;
+	int first;
 
+	first =  0;
+	pos = 0;
+	max = 0;
+	count = 0;
+	u = 0;
 	i = pile_a->size - len;
 	y = pile_a->size - ret;
+	y2 = pile_a->size - ret;
 	pivot = find_pivot(*pile_a, pile_a->size - ret, ret);
 	while (--y >= 0)
 	{
 		if (len == 0)
 		{
+			while (--y2 >= 0 && first == 0)
+			{
+				if ((pile_a->nbr)[0] > pivot + pivot / 2)
+					push(pile_a, pile_b, pile_b->identifier);
+				else
+					rotate(pile_a, pile_a->identifier);
+			}
+			//printf("KEBLO");
+			if (first == 0) {
+				insertsort_basic(pile_b, pile_a, &pos, &max);
+				//print_piles(pile_a, pile_b);
+				sort_three(pile_b, 2);
+				repush(pile_a, pile_b);
+			}
+			first++;
+			//print_piles(pile_a, pile_b);
+
+			//sort_three(pile_b, 2);
+			//repush(pile_a, pile_b);
 			if ((pile_a->nbr)[0] > pivot)
 				push(pile_a, pile_b, pile_b->identifier);
 			else
@@ -112,14 +151,33 @@ void quicksort(t_pile *pile_a, t_pile *pile_b, unsigned int len, unsigned int re
 		}
 		else
 		{
+			if (u == 0) {
+			rev_rotate(pile_a, pile_a->identifier);
+			u++;
+			}
 			if ((pile_a->nbr)[0] > pivot) {
 				push(pile_a, pile_b, pile_b->identifier);
-				//rotate(pile_a, pile_a->identifier);
+				count++;
+				//rev_rotate(pile_a, pile_a->identifier);
 				//i++;
 			}
-				
-			else
-				rotate(pile_a, pile_a->identifier);
+			if (y >= 1) {
+				//printf("y = %d\n", y);
+			rev_rotate(pile_a, pile_a->identifier);
+		} else {
+			i = ret + count;
+			//printf("y = %d\n", y);
+			//printf("i = %d\n", i);
+			//printf("ret = %d\n", ret);
+			//printf("count = %d\n", count);
+			//printf("pile_a = %d\n", pile_a->size);
+			//printf("pile_a + B = %d\n", pile_a->size + pile_b->size);
+			//print_piles(pile_a, pile_b);
+			while (i < (pile_a->size + pile_b->size)) {
+								rotate(pile_a, pile_a->identifier);
+								i++;
+						}
+				}
 		}
 	}
 }
