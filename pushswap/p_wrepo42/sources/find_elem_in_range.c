@@ -24,8 +24,6 @@ int find_pivot(t_pile pile, unsigned int len, unsigned int start)
   ret = 0;
   i = 0;
   j = 0;
-  //printf("%d len = \n", len);
-  //printf("%d start = \n", start);
   while (i < len)
   {
 	  count = 0;
@@ -46,9 +44,7 @@ int find_pivot(t_pile pile, unsigned int len, unsigned int start)
 			  }
 	  }
 	  i++;
-
   }
-	//printf("%d pivot = \n", pile.nbr[start + i]);
   return ((pile.nbr)[start + i]);
 }
 

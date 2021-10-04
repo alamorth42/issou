@@ -37,39 +37,21 @@ void	sort_algo(t_pile *pile_a, t_pile *pile_b)
 	i = -1;
 	len_displayed = 0;
 	size = pile_a->size;
-	// int tt = 0;
 
 	if (range_is_sorted(pile_a->nbr, pile_a->size))
 		return ;
 
 	if (pile_a->size > 25)
 	{
-		int count = 0;
-
 		while (!range_is_sorted(pile_a->nbr, pile_a->size)
 			&& size - ret > 2)
 		{
-			count++;
 			i = -1;
 			quicksort(pile_a, pile_b, len_displayed, ret);
-			//print_piles(pile_a, pile_b);
-
 			len_displayed = insertsort_basic(pile_b, pile_a, &pos, &max);
 			ret += len_displayed;
-			//print_piles(pile_a, pile_b);
-
 			sort_three(pile_b, 2);
 			repush(pile_a, pile_b);
-			//print_piles(pile_a, pile_b);
-
-			if (count >= 2) {
-				//while (++i < pile_a->size - ret)
-					//rev_rotate(pile_a, pile_a->identifier);
-			} else {
-				//while (++i < len_displayed)
-				//	rotate(pile_a, pile_a->identifier);
-			}
-			//print_piles(pile_a, pile_b);
 		}
 		rev_rotate(pile_a, pile_a->identifier);
 		if (pile_a->nbr[0] > pile_a->nbr[1]) {
@@ -79,105 +61,88 @@ void	sort_algo(t_pile *pile_a, t_pile *pile_b)
 		if (pile_a->nbr[0] > pile_a->nbr[1]) {
 			swap(pile_a, 1);
 		}
-		//print_piles(pile_a, pile_b);
-		//insertsort_basic(pile_a, pile_b, &pos, &min);
-		//while (!range_is_sorted(pile_a->nbr, pile_a->size))
-			//rev_rotate(pile_a, pile_a->identifier);
-		//print_piles(pile_a, pile_b);
-
-		// push(pile_a, pile_b, pile_b->identifier);
-		// push(pile_a, pile_b, pile_b->identifier);
-		// push(pile_a, pile_b, pile_b->identifier);
-		// sort_three(pile_b, 1);
-		// repush(pile_a, pile_b);
-
 	}
 	else
 		insertsort_basic(pile_a, pile_b, &pos, &min);
 		sort_three(pile_a, 1);
-		// printf("%d\n", pile_a->identifier);
 		repush(pile_a, pile_b);
-		// print_piles(pile_a, pile_b);
+}
+
+void first_boucle(t_pile *pile_a, t_pile *pile_b, int pivot, int first, unsigned int ret)
+{
+		int y2;
+		int pos;
+		int max;
+
+		y2 = pile_a->size - ret;
+		pos = 0;
+		max = 0;
+
+		while (--y2 >= 0 && first == 0)
+		{
+			if ((pile_a->nbr)[0] > pivot + pivot / 2)
+				push(pile_a, pile_b, pile_b->identifier);
+			else
+				rotate(pile_a, pile_a->identifier);
+		}
+		if (first == 0) {
+			insertsort_basic(pile_b, pile_a, &pos, &max);
+			sort_three(pile_b, 2);
+			repush(pile_a, pile_b);
+		}
+
+		if ((pile_a->nbr)[0] > pivot)
+			push(pile_a, pile_b, pile_b->identifier);
+		else
+			rotate(pile_a, pile_a->identifier);
+}
+
+void boucle_norme(t_pile *pile_a, t_pile *pile_b, int ret, int u, int pivot, int *i, int y, int *count)
+{
+	if (u == 0)
+		rev_rotate(pile_a, pile_a->identifier);
+	if ((pile_a->nbr)[0] > pivot) {
+		push(pile_a, pile_b, pile_b->identifier);
+		*count = *count + 1;
+	}
+	if (y >= 1) {
+	rev_rotate(pile_a, pile_a->identifier);
+	}
+else {
+	*i = ret + *count;
+	while (*i < (pile_a->size + pile_b->size)) {
+						rotate(pile_a, pile_a->identifier);
+						*i = *i + 1;
+				}
+		}
 }
 
 void quicksort(t_pile *pile_a, t_pile *pile_b, unsigned int len, unsigned int ret)
 {
 	int		pivot;
-	int		i;
-	int y2;
 	int y;
 	int u;
-	int count;
-	int pos;
-	int max;
 	int first;
+	int count;
+	int		i;
 
-	first =  0;
-	pos = 0;
-	max = 0;
 	count = 0;
-	u = 0;
 	i = pile_a->size - len;
+	first =  0;
+	u = 0;
 	y = pile_a->size - ret;
-	y2 = pile_a->size - ret;
 	pivot = find_pivot(*pile_a, pile_a->size - ret, ret);
 	while (--y >= 0)
 	{
 		if (len == 0)
 		{
-			while (--y2 >= 0 && first == 0)
-			{
-				if ((pile_a->nbr)[0] > pivot + pivot / 2)
-					push(pile_a, pile_b, pile_b->identifier);
-				else
-					rotate(pile_a, pile_a->identifier);
-			}
-			//printf("KEBLO");
-			if (first == 0) {
-				insertsort_basic(pile_b, pile_a, &pos, &max);
-				//print_piles(pile_a, pile_b);
-				sort_three(pile_b, 2);
-				repush(pile_a, pile_b);
-			}
+			first_boucle(pile_a, pile_b, pivot, first, ret);
 			first++;
-			//print_piles(pile_a, pile_b);
-
-			//sort_three(pile_b, 2);
-			//repush(pile_a, pile_b);
-			if ((pile_a->nbr)[0] > pivot)
-				push(pile_a, pile_b, pile_b->identifier);
-			else
-				rotate(pile_a, pile_a->identifier);
 		}
 		else
 		{
-			if (u == 0) {
-			rev_rotate(pile_a, pile_a->identifier);
+			boucle_norme(pile_a, pile_b, ret, u, pivot, &i, y, &count);
 			u++;
-			}
-			if ((pile_a->nbr)[0] > pivot) {
-				push(pile_a, pile_b, pile_b->identifier);
-				count++;
-				//rev_rotate(pile_a, pile_a->identifier);
-				//i++;
-			}
-			if (y >= 1) {
-				//printf("y = %d\n", y);
-			rev_rotate(pile_a, pile_a->identifier);
-		} else {
-			i = ret + count;
-			//printf("y = %d\n", y);
-			//printf("i = %d\n", i);
-			//printf("ret = %d\n", ret);
-			//printf("count = %d\n", count);
-			//printf("pile_a = %d\n", pile_a->size);
-			//printf("pile_a + B = %d\n", pile_a->size + pile_b->size);
-			//print_piles(pile_a, pile_b);
-			while (i < (pile_a->size + pile_b->size)) {
-								rotate(pile_a, pile_a->identifier);
-								i++;
-						}
-				}
 		}
 	}
 }

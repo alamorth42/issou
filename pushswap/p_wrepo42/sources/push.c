@@ -22,7 +22,6 @@ int	push(t_pile *a, t_pile *b, int id)
 	tmp_b = b->nbr;
 	b->size++;
 	count = b->size;
-	// printf("id = %d | topush %d\n ", id, tmp_a[0]);
 	while (--count > 0)
 		tmp_b[count] = tmp_b[count - 1];
 	tmp_b[0] = tmp_a[0];
@@ -31,7 +30,6 @@ int	push(t_pile *a, t_pile *b, int id)
 		tmp_a[count] = tmp_a[count + 1];
 	tmp_a[a->size - 1] = 0;
 	a->size--;
-	// printf("%d\n", id);
 	if (id == 1)
 		write(1, "pa\n", 3);
 	else
