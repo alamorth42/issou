@@ -38,3 +38,16 @@ t_pile	pile_create(char **argv)
 	pile_fill(&pile, argv);
 	return (pile);
 }
+
+t_quick_sort struct_quick_sort(t_pile *pile_a, unsigned int len, unsigned int ret)
+{
+	t_quick_sort structure;
+
+	structure.y = pile_a->size - ret - 1;
+	structure.pivot = find_pivot(*pile_a, pile_a->size - ret, ret);
+	structure.u = 0;
+	structure.first = 0;
+	structure.count = 0;
+	structure.i = pile_a->size - len;
+	return (structure);
+}

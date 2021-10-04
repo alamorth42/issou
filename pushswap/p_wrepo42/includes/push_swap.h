@@ -22,6 +22,17 @@ typedef struct s_pile
 	int identifier;
 }				t_pile;
 
+typedef struct s_quick_sort
+{
+	int		pivot;
+	int y;
+	int u;
+	int first;
+	int count;
+	int		i;
+}				t_quick_sort;
+
+t_quick_sort struct_quick_sort(t_pile *pile_a, unsigned int len, unsigned int ret);
 void 			quicksort(t_pile *pile_a, t_pile *pile_b, unsigned int len, unsigned int ret);
 int 			insertsort_basic(t_pile *p_a, t_pile *p_b, int *pos, int *min);
 int				find_pivot(t_pile pile, unsigned int len, unsigned int ret);

@@ -24,17 +24,14 @@ void print_piles(t_pile *pile, t_pile *pile2)
 void	sort_algo(t_pile *pile_a, t_pile *pile_b)
 {
 	int		pos;
-	int		min;
 	int		max;
-	int		i;
 	int		len_displayed;
 	int		size;
-	int ret = 0;
+	int ret;
 
 	pos = 0;
-	min = 0;
+	ret = 0;
 	max = 0;
-	i = -1;
 	len_displayed = 0;
 	size = pile_a->size;
 
@@ -46,7 +43,6 @@ void	sort_algo(t_pile *pile_a, t_pile *pile_b)
 		while (!range_is_sorted(pile_a->nbr, pile_a->size)
 			&& size - ret > 2)
 		{
-			i = -1;
 			quicksort(pile_a, pile_b, len_displayed, ret);
 			len_displayed = insertsort_basic(pile_b, pile_a, &pos, &max);
 			ret += len_displayed;
@@ -63,7 +59,7 @@ void	sort_algo(t_pile *pile_a, t_pile *pile_b)
 		}
 	}
 	else
-		insertsort_basic(pile_a, pile_b, &pos, &min);
+		insertsort_basic(pile_a, pile_b, &pos, &max);
 		sort_three(pile_a, 1);
 		repush(pile_a, pile_b);
 }
@@ -97,53 +93,40 @@ void first_boucle(t_pile *pile_a, t_pile *pile_b, int pivot, int first, unsigned
 			rotate(pile_a, pile_a->identifier);
 }
 
-void boucle_norme(t_pile *pile_a, t_pile *pile_b, int ret, int u, int pivot, int *i, int y, int *count)
+void other_boucle(t_pile *pile_a, t_pile *pile_b, int ret, t_quick_sort *structure)
 {
-	if (u == 0)
+	if (structure->u == 0)
 		rev_rotate(pile_a, pile_a->identifier);
-	if ((pile_a->nbr)[0] > pivot) {
+	if ((pile_a->nbr)[0] > structure->pivot) {
 		push(pile_a, pile_b, pile_b->identifier);
-		*count = *count + 1;
+		structure->count = structure->count + 1;
 	}
-	if (y >= 1) {
+	if (structure->y >= 1) {
 	rev_rotate(pile_a, pile_a->identifier);
 	}
 else {
-	*i = ret + *count;
-	while (*i < (pile_a->size + pile_b->size)) {
+	structure->i = ret + structure->count;
+	while (structure->i < (pile_a->size + pile_b->size)) {
 						rotate(pile_a, pile_a->identifier);
-						*i = *i + 1;
+						structure->i = structure->i + 1;
 				}
 		}
 }
 
 void quicksort(t_pile *pile_a, t_pile *pile_b, unsigned int len, unsigned int ret)
 {
-	int		pivot;
-	int y;
-	int u;
-	int first;
-	int count;
-	int		i;
+	t_quick_sort structure;
 
-	count = 0;
-	i = pile_a->size - len;
-	first =  0;
-	u = 0;
-	y = pile_a->size - ret;
-	pivot = find_pivot(*pile_a, pile_a->size - ret, ret);
-	while (--y >= 0)
+	structure = struct_quick_sort(pile_a, len, ret);
+	while (structure.y >= 0)
 	{
 		if (len == 0)
-		{
-			first_boucle(pile_a, pile_b, pivot, first, ret);
-			first++;
+			first_boucle(pile_a, pile_b, structure.pivot, structure.first++, ret);
+		else  {
+		other_boucle(pile_a, pile_b, ret, &structure);
+		structure.u += 1;
 		}
-		else
-		{
-			boucle_norme(pile_a, pile_b, ret, u, pivot, &i, y, &count);
-			u++;
-		}
+		structure.y--;
 	}
 }
 
@@ -218,7 +201,6 @@ void	sort_three(t_pile *pile, int c)
 	res = 1;
 	while (res)
 	{
-		// printf("res %d for %d %d %d\n", res, tmp[0], tmp[1], tmp[2]);
 		if (c == 1)
 			res = case_three_basic(tmp[0], tmp[1], tmp[2]);
 		else

@@ -45,10 +45,6 @@ int	main(int argc, char **argv)
 	pile_b.size = 0;
 	pile_b.identifier = 2;
 	push_swap(pile_a, pile_b);
-	// int i = -1;
-	// while (++i < pile_a.size)
-	// 	printf("%d | ", (pile_a.nbr)[i]);
-	// write(1, "\n", 2);
 	free_program(pile_a.nbr, pile_b.nbr);
 	return (0);
 }
