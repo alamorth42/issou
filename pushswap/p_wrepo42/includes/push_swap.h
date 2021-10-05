@@ -35,7 +35,7 @@ typedef struct s_quick_sort
 t_quick_sort struct_quick_sort(t_pile *pile_a, unsigned int len, unsigned int ret);
 void 			quicksort(t_pile *pile_a, t_pile *pile_b, unsigned int len, unsigned int ret);
 int 			insertsort_basic(t_pile *p_a, t_pile *p_b, int *pos, int *min);
-int				find_pivot(t_pile pile, unsigned int len, unsigned int ret);
+int				find_pivot(t_pile pile, int len, unsigned int ret);
 int				find_smaller(t_pile pile, int *min);
 int				find_bigger(t_pile pile, int *max);
 char			**parsearg(char **argv, int argc);

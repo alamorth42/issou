@@ -12,38 +12,45 @@
 
 #include "../includes/push_swap.h"
 
-int find_pivot(t_pile pile, unsigned int len, unsigned int start)
+void setup_pivot(int *y, int *ret, int *i, int *j, int start)
+{
+  *y = start;
+  *ret = 0;
+  *i = -1;
+  *j = -1;
+}
+
+void setup_two(int *count, int *j)
+{
+  *count = 0;
+  *j = -1;
+}
+
+int find_pivot(t_pile pile, int len, unsigned int start)
 {
   int ret;
   int count;
-  unsigned int i;
-  unsigned int j;
+  int i;
+  int j;
   int y;
 
-	y = start;
-  ret = 0;
-  i = 0;
-  j = 0;
-  while (i < len)
+	setup_pivot(&y, &ret, &i, &j, start);
+  while (++i < len)
   {
-	  count = 0;
-	  j = 0;
-	  while (j < len){
-	  	  if (pile.nbr[start + i] > pile.nbr[start +j]) {
-				count++;
-		  }
-		  j++;
+    setup_two(&count, &j);
+	  while (++j < len)
+    {
+	  	  if (pile.nbr[start + i] > pile.nbr[start +j])
+				    count++;
 	  }
-	  if (len % 2 == 1) {
-		  if (count == len / 2) {
+	  if (len % 2 == 1)
+    {
+		  if (count == len / 2)
 			  break;
-		  }
-	  } else {
-		  	if (count == len / 2 - 1) {
-			  break;
-			  }
 	  }
-	  i++;
+    else
+		  	if (count == len / 2 - 1)
+			     break;
   }
   return ((pile.nbr)[start + i]);
 }
