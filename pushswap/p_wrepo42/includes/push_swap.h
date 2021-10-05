@@ -6,7 +6,7 @@
 /*   By: alamorth <alamorth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 03:34:40 by bihattay          #+#    #+#             */
-/*   Updated: 2021/10/01 10:06:19 by alamorth         ###   ########.fr       */
+/*   Updated: 2021/10/05 08:08:11 by alamorth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,24 @@
 
 typedef struct s_pile
 {
-	int	*nbr;
-	int	size;
-	int identifier;
+	int		*nbr;
+	int		size;
+	int		identifier;
 }				t_pile;
 
 typedef struct s_quick_sort
 {
 	int		pivot;
-	int y;
-	int u;
-	int first;
-	int count;
+	int		y;
+	int		u;
+	int		first;
+	int		count;
 	int		i;
 }				t_quick_sort;
 
-t_quick_sort struct_quick_sort(t_pile *pile_a, unsigned int len, unsigned int ret);
-void 			quicksort(t_pile *pile_a, t_pile *pile_b, unsigned int len, unsigned int ret);
-int 			insertsort_basic(t_pile *p_a, t_pile *p_b, int *pos, int *min);
+t_quick_sort	st_qck_sort(t_pile *pile_a, unsigned int len, unsigned int ret);
+void			quicksort(t_pile *p, t_pile *t, unsigned int l, unsigned int r);
+int				insertsort_basic(t_pile *p_a, t_pile *p_b, int *pos, int *min);
 int				find_pivot(t_pile pile, int len, unsigned int ret);
 int				find_smaller(t_pile pile, int *min);
 int				find_bigger(t_pile pile, int *max);
@@ -49,7 +49,7 @@ void			sort_three(t_pile *pile, int c);
 void			rotate(t_pile *a, int id);
 void			swap(t_pile *a, int id);
 void			rev_rotate(t_pile *a, int id);
-int			push(t_pile *a, t_pile *b, int c);
+int				push(t_pile *a, t_pile *b, int c);
 int				find_smaller(t_pile pile, int *min);
 void			repush(t_pile *dest, t_pile *src);
 

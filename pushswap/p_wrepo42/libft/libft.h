@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alamorth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 03:36:03 by bihattay          #+#    #+#             */
-/*   Updated: 2021/09/29 03:36:08 by bihattay         ###   ########.fr       */
+/*   Created: 2021/10/05 08:08:45 by alamorth          #+#    #+#             */
+/*   Updated: 2021/10/05 08:09:33 by alamorth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-int 				range_is_sorted(int *range, int size);
+int					range_is_sorted(int *range, int size);
 int					ft_rangecontaindoublon(int *range, int size);
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);

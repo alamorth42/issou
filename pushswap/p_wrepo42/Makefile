@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bihattay <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: alamorth <alamorth@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/29 03:38:59 by bihattay          #+#    #+#              #
-#    Updated: 2021/09/29 03:39:01 by bihattay         ###   ########.fr        #
+#    Updated: 2021/10/05 08:03:36 by alamorth         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ SRCS			= sources/fill_piles.c\
 						sources/swap_a.c\
 						sources/free.c\
 						sources/find_elem_in_range.c\
+						sources/quicksort.c\
+						sources/low_cases.c\
 						sources/parse.c
 
 OBJS			= $(SRCS:.c=.o)

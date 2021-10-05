@@ -6,7 +6,7 @@
 /*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 03:39:45 by bihattay          #+#    #+#             */
-/*   Updated: 2021/09/29 03:39:47 by bihattay         ###   ########.fr       */
+/*   Updated: 2021/10/05 07:29:19 by alamorth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ t_pile	pile_create(char **argv)
 	return (pile);
 }
 
-t_quick_sort struct_quick_sort(t_pile *pile_a, unsigned int len, unsigned int ret)
+t_quick_sort	st_qck_sort(t_pile *pile_a, unsigned int len, unsigned int ret)
 {
-	t_quick_sort structure;
+	t_quick_sort	structure;
 
 	structure.y = pile_a->size - ret - 1;
 	structure.pivot = find_pivot(*pile_a, pile_a->size - ret, ret);
