@@ -43,12 +43,12 @@ static int	case_three_quicksort(int a, int b, int c)
 		return (0);
 	else if (b > a && a > c)
 		return (1);
-	else if (b < a && c > b)
-		return (3);
 	else if (c < b && b > a && a < c)
 		return (3);
 	else if (b < a && c > a)
 		return (2);
+	else if (b == c)
+		return (0);
 	else
 		return (1);
 }
@@ -64,19 +64,15 @@ void	sort_three(t_pile *pile, int c)
 	res = 1;
 	while (res)
 	{
-		printf("%d%d%d\n", tmp[0], tmp[1], tmp[3]);
 		if (c == 1)
 			res = case_three_basic(tmp[0], tmp[1], tmp[2]);
 		else
 			res = case_three_quicksort(tmp[0], tmp[1], tmp[2]);
-		if (res == 1) {
-			write(2, "ICI", 3);
+		if (res == 1)
 			swap(pile, pile->identifier);
-		}
 		else if (res == 3)
 			rotate(pile, pile->identifier);
 		else if (res == 2)
 			rev_rotate(pile, pile->identifier);
-		printf("%d", res);
 	}
 }
