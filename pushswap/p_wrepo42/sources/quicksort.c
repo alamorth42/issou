@@ -6,7 +6,7 @@
 /*   By: alamorth <alamorth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 03:40:18 by bihattay          #+#    #+#             */
-/*   Updated: 2021/10/05 08:05:50 by alamorth         ###   ########.fr       */
+/*   Updated: 2021/10/05 09:12:07 by alamorth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	other_boucle(t_pile *pile_a, t_pile *pile_b, int ret, t_quick_sort *s)
 		s->i = ret + s->count;
 		while (s->i < (pile_a->size + pile_b->size))
 		{
+			write(2, "KO", 2);
 			rotate(pile_a, pile_a->identifier);
 			s->i = s->i + 1;
 		}
@@ -79,6 +80,8 @@ void	quicksort(t_pile *p_a, t_pile *p_b, unsigned int len, unsigned int ret)
 			other_boucle(p_a, p_b, ret, &structure);
 			structure.u += 1;
 		}
+		write(2, "retour", 6);
 		structure.y--;
 	}
+	write(2, "sortie", 5);
 }

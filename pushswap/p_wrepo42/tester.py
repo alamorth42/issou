@@ -96,7 +96,8 @@ def runLine(line):
                 if (ko != -1):
                     ko = "OK"
                 print_flags(concat, res)
-		print(str((len(str.split(res, ENDL)) - 1)) + " [SORT ?] " + ko)
+                print(y)
+		print(" [SORT ?] " + ko)
 		if ((len(str.split(res, ENDL)) - 1) > int(line[1])):
 			ok = 0
 			koCountCap += 1
