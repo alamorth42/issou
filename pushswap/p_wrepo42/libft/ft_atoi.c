@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alamorth <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 03:36:36 by bihattay          #+#    #+#             */
-/*   Updated: 2021/09/29 03:36:46 by bihattay         ###   ########.fr       */
+/*   Created: 2021/10/06 10:05:49 by alamorth          #+#    #+#             */
+/*   Updated: 2021/10/06 11:33:07 by alamorth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	nb_is_over_long(const char *str, int sign)
 	return (1);
 }
 
-int	ft_atoi(const char *str)
+long long int	ft_atoi(const char *str)
 {
 	int				i;
 	int				sign;

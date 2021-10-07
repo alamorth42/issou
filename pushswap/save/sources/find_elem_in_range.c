@@ -6,7 +6,7 @@
 /*   By: alamorth <alamorth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 03:39:07 by bihattay          #+#    #+#             */
-/*   Updated: 2021/10/01 12:55:50 by alamorth         ###   ########.fr       */
+/*   Updated: 2021/10/06 10:20:18 by alamorth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ int find_pivot(t_pile pile, unsigned int len, unsigned int start)
   ret = 0;
   i = 0;
   j = 0;
-  //printf("%d len = \n", len);
-  //printf("%d start = \n", start);
   while (i < len)
   {
 	  count = 0;
@@ -48,7 +46,6 @@ int find_pivot(t_pile pile, unsigned int len, unsigned int start)
 	  i++;
 	
   }
-	//printf("%d pivot = \n", pile.nbr[i]);
   return ((pile.nbr)[i]);
 }
 

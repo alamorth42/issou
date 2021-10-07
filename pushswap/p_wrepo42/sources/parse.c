@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alamorth <alamorth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 03:39:35 by bihattay          #+#    #+#             */
-/*   Updated: 2021/09/29 03:42:28 by bihattay         ###   ########.fr       */
+/*   Created: 2021/10/06 10:02:52 by alamorth          #+#    #+#             */
+/*   Updated: 2021/10/07 12:56:51 by alamorth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ char	**parsearg(char **argv, int argc)
 			return (NULL);
 		while (argv[i][++j])
 			if (!(j == 0 && argv[i][0] == '-') && !ft_isdigit(argv[i][j]))
-				return (NULL);
+			{
+				if (argv[i][j] != ' ')
+					return (NULL);
+			}
 	}
 	return (argv + 1);
 }

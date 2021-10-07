@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_piles.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bihattay <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alamorth <alamorth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/29 03:39:07 by bihattay          #+#    #+#             */
-/*   Updated: 2021/09/29 03:39:10 by bihattay         ###   ########.fr       */
+/*   Created: 2021/10/06 10:01:39 by alamorth          #+#    #+#             */
+/*   Updated: 2021/10/07 13:05:31 by alamorth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	pile_fill(t_pile *pile, char **argv)
 	tmp = pile->nbr;
 	while (argv[i])
 	{
+					printf("argv = %s\n", argv[i]);
 		*tmp = ft_atoi(argv[i]);
 		tmp++;
 		i++;
